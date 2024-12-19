@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Страница 1</h1>
+		<a href="./Task1.html">Страница1</a><a href="./Task1.1.html">Страница2</a> <button class="forward">Вперед</button
+		><button class="back">Назад</button>
+	</body>
+	<script>
+		const forwardButton = document.querySelector(".forward");
+		const backButton = document.querySelector(".back");
+
+		forwardButton.addEventListener("click", (event) => {
+			history.forward();
+		});
+
+		backButton.addEventListener("click", (event) => {
+			history.back();
+		});
+
+		window.addEventListener("resize", (event) => {
+			console.log(`Ширина экрана ${window.innerWidth}, высота экрана ${window.innerHeight}`);
+		});
+
+		// window.addEventListener("beforeunload", (event) => {
+		// 	event.preventDefault();
+		// 	event.returnValue = "Вы уверены, что хотите покинуть эту страницу?";
+		// });
+	</script>
+</html>

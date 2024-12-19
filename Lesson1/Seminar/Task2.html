@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: aqua;
+			}
+
+			.elements {
+				margin-top: 25px;
+				display: flex;
+				gap: 20px;
+				flex-wrap: wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="addDiv">Добавить элемент</button>
+		<button class="removeDiv">Удалить элемент</button>
+		<button class="cloneDiv">Клонировать элемент</button>
+		<div class="elements"></div>
+	</body>
+	<script>
+		const addDiv = document.querySelector(".addDiv");
+		const removeDiv = document.querySelector(".removeDiv");
+		const cloneDiv = document.querySelector(".cloneDiv");
+		const boxElements = document.querySelector(".elements");
+
+		let divNumber = 0;
+
+		addDiv.addEventListener("click", (event) => {
+			const newDiv = document.createElement("div");
+			newDiv.classList.add("box");
+			divNumber++;
+			newDiv.textContent = `${divNumber}`;
+			boxElements.appendChild(newDiv);
+		});
+
+		removeDiv.addEventListener("click", (event) => {
+			boxElements.lastElementChild.remove();
+			divNumber--;
+		});
+
+		cloneDiv.addEventListener("click", (event) => {
+			divNumber++;
+			const clonedElement = boxElements.lastElementChild.cloneNode();
+			clonedElement.textContent = `${divNumber}`;
+			boxElements.appendChild(clonedElement);
+		});
+	</script>
+</html>
