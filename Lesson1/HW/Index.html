@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Расписание занятий</title>
+		<script src="./data.js"></script>
+		<style>
+			.lessons-headers {
+				display: flex;
+				flex-direction: row;
+				justify-content: start;
+				gap: 50px;
+				text-align: center;
+			}
+			.lessonElement {
+				display: flex;
+				flex-direction: row;
+				justify-content: start;
+				gap: 180px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="title">Расписание занятий</h1>
+		<div class="lessons-headers">
+			<p class="lessonName">Название занятия</p>
+			<p class="lessonTime">Время проведения</p>
+			<p class="lessonMaxMembers">Максимум учатников</p>
+			<p class="lessonCurrentMembers">Участников записалось</p>
+		</div>
+		<div class="lessons-items"></div>
+	</body>
+	<script>
+		const lessonsList = JSON.parse(lessonsData);
+		const lessonsBox = document.querySelector(".lessons-items");
+
+		lessonsList.forEach((lesson) => {
+			const lessonTitle = document.createElement("h3");
+			lessonTitle.classList.add("lessonTitle");
+			lessonTitle.textContent = lesson.name;
+
+			const lessonTime = document.createElement("p");
+			lessonTime.textContent = lesson.time;
+
+			const lessonMaxMembers = document.createElement("p");
+			lessonMaxMembers.classList.add("maxMembers");
+			lessonMaxMembers.textContent = lesson.maxMembers;
+
+			const lessonCurrentMembers = document.createElement("p");
+			lessonCurrentMembers.classList.add("currentMembers");
+			lessonCurrentMembers.textContent = lesson.currentMembers;
+
+			const signUp = document.createElement("button");
+			signUp.classList.add("signUpButton");
+			signUp.textContent = "Записаться";
+
+			const signOut = document.createElement("button");
+			signOut.classList.add("signOutButton");
+			signOut.textContent = "Отменить запись";
+
+			const lessonElement = document.createElement("div");
+			lessonElement.classList.add("lessonElement");
+			lessonElement.appendChild(lessonTitle);
+			lessonElement.appendChild(lessonTime);
+			lessonElement.appendChild(lessonMaxMembers);
+			lessonElement.appendChild(lessonCurrentMembers);
+			lessonElement.appendChild(signUp);
+			lessonElement.appendChild(signOut);
+
+			lessonsBox.appendChild(lessonElement);
+		});
+
+		const lessonElement = document.querySelectorAll(".lessonElement");
+
+		lessonElement.forEach((element) => {
+			element.addEventListener("click", (event) => {
+				if (event.target.classList.contains("signUpButton")) {
+					const elements = event.target.parentNode.children;
+					console.log(elements);
+
+					for (const value of elements) {
+						if (value.className === "currentMembers") {
+							let countMembers = Number(value.textContent) + 1;
+							value.textContent = countMembers;
+						}
+					}
+				}
+			});
+		});
+	</script>
+</html>
