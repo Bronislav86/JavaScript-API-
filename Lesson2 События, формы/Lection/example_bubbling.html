@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			ul {
+				padding: 0;
+			}
+
+			li {
+				padding: 10px;
+				cursor: pointer;
+			}
+
+			li:hover {
+				background-color: #f0f0f0;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li>Элеиент 1</li>
+			<li>Элеиент 2</li>
+			<li>Элеиент 3</li>
+			<li>Элеиент 4</li>
+			<li>Элеиент 5</li>
+		</ul>
+	</body>
+	<script>
+		const list = document.querySelector("#list");
+
+		list.addEventListener("click", function (e) {
+			if (e.target.tagName === "LI") {
+				console.log(`Вы нажали на ${e.target.textContent}`);
+			}
+		});
+	</script>
+</html>

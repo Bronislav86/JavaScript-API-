@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<a href="product.html" class="product-button">Страница продукта</a>
+		<button class="buy">Купить</button>
+	</body>
+	<script>
+		const button = document.querySelector(".buy");
+
+		function renameButton() {
+			button.textContent = "Купить";
+		}
+
+		button.addEventListener("click", (e) => {
+			button.textContent = "Товар добавлен в корзину";
+			if (e.isTrusted) {
+				setTimeout(renameButton, 2000);
+			}
+		});
+
+		window.addEventListener("load", () => {
+			console.log(window.location.href);
+			console.log(getLastPartOfUrl(window.location.href));
+
+			if (getLastPartOfUrl(window.location.href) === "product.html") {
+				setTimeout(() => {
+					history.back();
+				}, 2000);
+			}
+		});
+
+		function getLastPartOfUrl(url) {
+			const parts = url.split("/");
+			return parts.at(-1);
+		}
+	</script>
+</html>

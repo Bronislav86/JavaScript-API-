@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.navigation__menu {
+				margin-top: 150px;
+				margin-left: 150px;
+				display: flex;
+				gap: 0px;
+				align-content: center;
+				align-items: center;
+				flex-direction: row;
+			}
+			.navigation__menu_item {
+				display: block;
+				background-color: #2e2e2e;
+				color: #000;
+				width: 100px;
+				height: 50px;
+				text-align: center;
+				align-content: center;
+			}
+
+			.navigation__menu_item:hover {
+				background-color: #7d7d7d;
+			}
+
+			.active {
+				background-color: red;
+			}
+
+			a {
+				text-decoration: none;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<nav class="navigation">
+				<ul class="navigation__menu">
+					<li class="navigation__menu_item"><a href="#">Главная</a></li>
+					<li class="navigation__menu_item"><a href="#">О нас</a></li>
+					<li class="navigation__menu_item"><a href="#">Услуги</a></li>
+					<li class="navigation__menu_item"><a href="#">Контакты</a></li>
+				</ul>
+			</nav>
+		</header>
+	</body>
+	<script>
+		const menu = document.querySelector(".navigation__menu");
+
+		const listItems = document.querySelectorAll(".navigation__menu_item");
+
+		listItems.forEach((item) => {
+			// if (item.classList.contains("active")) {
+			// 	item.classList.remove("active");
+			// }
+
+			// item.addEventListener("mouseover", () => {
+			// 	if (item.tagName === "LI") {
+			// 		item.style.backgroundColor = "#7d7d7d";
+			// 	}
+			// });
+
+			// item.addEventListener("mouseout", () => {
+			// 	if (item.tagName === "LI") {
+			// 		item.style.backgroundColor = "#2e2e2e";
+			// 	}
+			// });
+
+			item.addEventListener("click", (e) => {
+				e.preventDefault();
+				for (const element of listItems) {
+					element.classList.remove("active");
+				}
+				if (item.classList.contains("navigation__menu_item")) {
+					item.classList.add("active");
+				}
+			});
+		});
+	</script>
+</html>
