@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Выбирите категорию товара:</h1>
+		<select name="select" id="select">
+			<option value="">--Выберите категорию--</option>
+			<option value="electronic">Электроника</option>
+			<option value="technik">Бытовая техника</option>
+			<option value="books">Книги</option>
+			<option value="clothes">Одежда</option>
+			<option value="furniture">Мебель</option>
+		</select>
+		<h2>Товары:</h2>
+		<ul class="productsList"></ul>
+		<ul></ul>
+	</body>
+	<script>
+		productsData = [
+			{
+				id: 1,
+				name: "Ноутбук",
+				category: "Электроника",
+			},
+			{
+				id: 2,
+				name: "Смартфон",
+				category: "Электроника",
+			},
+			{
+				id: 3,
+				name: "Кофемашина",
+				category: "Бытовая техника",
+			},
+			{
+				id: 4,
+				name: "Фотокамера",
+				category: "Электроника",
+			},
+			{
+				id: 5,
+				name: "Микроволновая печь",
+				category: "Бытовая техника",
+			},
+			{
+				id: 6,
+				name: "Книга",
+				category: "Книги",
+			},
+			{
+				id: 7,
+				name: "Футболка",
+				category: "Одежда",
+			},
+			{
+				id: 8,
+				name: "Шапка",
+				category: "Одежда",
+			},
+			{
+				id: 9,
+				name: "Стул",
+				category: "Мебель",
+			},
+			{
+				id: 10,
+				name: "Стол",
+				category: "Мебель",
+			},
+		];
+		const select = document.querySelector("#select");
+		const listOfProducts = document.querySelector(".productsList");
+
+		select.onchange = function () {
+			toClearListOfProducts();
+
+			const category = getCategory();
+
+			productsData.forEach((product) => {
+				if (product.category === category) {
+					const productItemLi = document.createElement("li");
+					productItemLi.classList.add("li-item");
+					productItemLi.textContent = product.name;
+					listOfProducts.appendChild(productItemLi);
+				}
+			});
+		};
+
+		getCategory = () => {
+			const selectedProduct = select.value;
+			let category = "";
+			switch (selectedProduct) {
+				case "electronic":
+					category = "Электроника";
+					break;
+				case "technik":
+					category = "Бытовая техника";
+					break;
+				case "books":
+					category = "Книги";
+					break;
+				case "clothes":
+					category = "Одежда";
+					break;
+				case "furniture":
+					category = "Мебель";
+					break;
+				default:
+					category = "--Выберите категорию--";
+					toClearListOfProducts();
+			}
+			return category;
+		};
+
+		toClearListOfProducts = () => {
+			const listElements = listOfProducts.childNodes;
+
+			listElements.forEach((li) => {
+				listOfProducts.removeChild(li);
+			});
+		};
+	</script>
+</html>
