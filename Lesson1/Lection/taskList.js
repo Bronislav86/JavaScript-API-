@@ -3,7 +3,7 @@ const addButton = document.querySelector(".add-button");
 const taskList = document.querySelector(".task-list");
 
 if (localStorage.getItem("tasks")) {
-	taskList.innerHTML = localStorage.getItem("tasks");
+	taskList.innerHTML = localStorage.getItem("tasks") || [];
 }
 
 addButton.addEventListener("click", () => {
